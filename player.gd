@@ -1,18 +1,4 @@
 extends KinematicBody
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-	#pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 # stats
 var curHp : int = 10
 var maxHp : int = 10
@@ -89,7 +75,7 @@ func _physics_process (Delta):
 	
 	# apply gravity
 	#vel.y -= gravity * delta
-	vel.y -= gravity * 1
+	vel.y -= gravity * 0.01
 	
 	# move the player
 	vel = move_and_slide(vel, Vector3.UP)
