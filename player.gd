@@ -15,6 +15,8 @@ var minLookAngle : float = -90.0
 var maxLookAngle : float = 90.0
 var lookSensitivity : float = 0.5
 
+var delta : float = 0.02
+
 # vectors
 var vel : Vector3 = Vector3()
 var mouseDelta : Vector2 = Vector2()
@@ -77,8 +79,7 @@ func _physics_process (Delta):
 	vel.x = (forward * input.y + right * input.x).x * moveSpeed
 	
 	# apply gravity
-	#vel.y -= gravity * delta
-	vel.y -= gravity * 0.01
+	vel.y -= gravity * delta
 	
 	# move the player
 	vel = move_and_slide(vel, Vector3.UP)
@@ -86,3 +87,32 @@ func _physics_process (Delta):
 	# jump if we press the jump button and are standing on the floor
 	if Input.is_action_pressed("jump") and is_on_floor():
 	    vel.y = jumpForce
+		
+#=====
+# called when an enemy damages us
+func take_damage (damage):
+
+    curHp -= damage
+
+    if curHp <= 0:
+        die()
+
+# called when our health reaches 0
+func die ():
+
+    pass
+
+# called when we kill an enemy
+func add_score (amount):
+
+    score += amount
+
+# adds an amount of health to the player
+func add_health (amount):
+
+    curHp = clamp(curHp + amount, 0, maxHp)
+
+# adds an amount of ammo to the player
+func add_ammo (amount):
+
+    ammo += amount
