@@ -22,6 +22,9 @@ var mouseDelta : Vector2 = Vector2()
 # player components
 onready var camera = get_node("Camera")
 
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 # called when an input is detected
 func _input (event):
 

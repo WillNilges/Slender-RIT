@@ -36,8 +36,20 @@ material/2 = null
 [node name="CollisionShape" type="CollisionShape" parent="Node/Ground2/StaticBody"]
 shape = SubResource( 1 )
 
+[node name="Ground5" type="MeshInstance" parent="Node"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.40247, 0.91418, 7.82742 )
+mesh = ExtResource( 1 )
+material/0 = null
+material/1 = null
+material/2 = null
+
+[node name="StaticBody" type="StaticBody" parent="Node/Ground5"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Node/Ground5/StaticBody"]
+shape = SubResource( 1 )
+
 [node name="Ground3" type="MeshInstance" parent="Node"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56456, 0.574527, -0.557267 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09213, 0.0834949, -0.539808 )
 mesh = ExtResource( 1 )
 material/0 = null
 material/1 = null
@@ -46,6 +58,30 @@ material/2 = null
 [node name="StaticBody" type="StaticBody" parent="Node/Ground3"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Node/Ground3/StaticBody"]
+shape = SubResource( 1 )
+
+[node name="Ground4" type="MeshInstance" parent="Node"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.66387, 1.02703, 5.01477 )
+mesh = ExtResource( 1 )
+material/0 = null
+material/1 = null
+material/2 = null
+
+[node name="StaticBody" type="StaticBody" parent="Node/Ground4"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Node/Ground4/StaticBody"]
+shape = SubResource( 1 )
+
+[node name="Ground6" type="MeshInstance" parent="Node"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45086, 1.16664, 11.2964 )
+mesh = ExtResource( 1 )
+material/0 = null
+material/1 = null
+material/2 = null
+
+[node name="StaticBody" type="StaticBody" parent="Node/Ground6"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Node/Ground6/StaticBody"]
 shape = SubResource( 1 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
