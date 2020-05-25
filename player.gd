@@ -120,7 +120,6 @@ func _physics_process (Delta):
 		flashlight.visible = !flashlight.visible
 	
 
-<<<<<<< HEAD
 		
 
 func take_damage (damage):
@@ -128,17 +127,10 @@ func take_damage (damage):
 	curHP -= damage
 	update_health_bar(curHP,maxHP)	
 	regenTimer.start(regenDelay)
-=======
-	curHp -= damage
-
-	if curHp <= 0:
-		die()
->>>>>>> master
 
 	if curHP <= 0:
 		die()
 
-<<<<<<< HEAD
 func die ():
 	print_debug("I'm FUCKING DEAD!")
 	get_tree().quit()
@@ -146,27 +138,14 @@ func die ():
 # called when we kill an enemy
 func add_score (amount):
     score += amount
-=======
-	pass
-
-# called when we kill an enemy
-func add_score (amount):
-
-	score += amount
->>>>>>> master
 
 # IDK why this is separate...
 #func add_health (amount):
 #	curHP = clamp(curHP + amount, 0, maxHP)
 
-<<<<<<< HEAD
-=======
-	curHp = clamp(curHp + amount, 0, maxHp)
->>>>>>> master
 
 # And here we see an example of "Bad Code."
 
-<<<<<<< HEAD
 onready var healthBar : TextureProgress = get_node("/root/MainScene/CanvasLayer/UI/HealthBar")
 onready var powerBar : TextureProgress = get_node("/root/MainScene/CanvasLayer/UI/PowerBar")
 onready var staminaBar : TextureProgress = get_node("/root/MainScene/CanvasLayer/UI/StaminaBar")
@@ -210,6 +189,3 @@ func _on_LightTimer_timeout():
 	update_health_bar(curHP, maxHP)
 	update_power_bar(curPOW, maxPOW)
 	update_stamina_bar(curSTM, maxSTM)
-=======
-	ammo += amount
->>>>>>> master
