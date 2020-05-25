@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://User Interface.gd" type="Script" id=1]
+[ext_resource path="res://GodotFPS-Assets/UI/UI_Square.png" type="Texture" id=2]
+
+[node name="UI" type="Node"]
+script = ExtResource( 1 )
+
+[node name="HealthBar" type="TextureProgress" parent="."]
+margin_left = 18.0
+margin_top = 32.0
+margin_right = 230.0
+margin_bottom = 45.0
+value = 50.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 2 )
+tint_under = Color( 0, 0, 0, 1 )
+nine_patch_stretch = true
+
+[node name="PowerBar" type="TextureProgress" parent="."]
+margin_left = 18.0
+margin_top = 51.0
+margin_right = 230.0
+margin_bottom = 57.0
+value = 100.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 2 )
+tint_under = Color( 0, 0, 0, 1 )
+tint_progress = Color( 0.164706, 0.490196, 1, 1 )
+nine_patch_stretch = true
+
+[node name="StaminaBar" type="TextureProgress" parent="."]
+margin_left = 18.0
+margin_top = 45.0
+margin_right = 230.0
+margin_bottom = 51.0
+value = 100.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 2 )
+tint_under = Color( 0, 0, 0, 1 )
+tint_progress = Color( 0.156863, 1, 0.188235, 1 )
+nine_patch_stretch = true
