@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://GodotFPS-Assets/Models/Environment/Ground.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player.gd" type="Script" id=3]
+[ext_resource path="res://collectables/collectableHead.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConcavePolygonShape" id=1]
 data = PoolVector3Array( 0, 0, 0, 3, 0.3, 0, 3, 0, 0, 3, 0.3, 0, 0, 0, 0, 0, 0.3, 0, 0, 0.3, -3, 3, 0.3, 0, 0, 0.3, 0, 3, 0.3, 0, 0, 0.3, -3, 3, 0.3, -3, 3, 0, -3, 3, 0.3, 0, 3, 0.3, -3, 3, 0.3, 0, 3, 0, -3, 3, 0, 0, 3, 0, -3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, -3, 0, 0, -3, 0, 0.3, -3, 0, 0, 0, 0, 0, -3, 0, 0, 0, 0, 0.3, -3, 0, 0.3, 0, 3, 0, -3, 0, 0.3, -3, 0, 0, -3, 0, 0.3, -3, 3, 0, -3, 3, 0.3, -3 )
@@ -13,7 +14,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.045425, 0.629712, -0.4849 )
 [node name="Node" type="Node" parent="."]
 
 [node name="Ground" type="MeshInstance" parent="Node"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.996823, 1.60436, -0.199304 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00208, 1.60436, -0.192333 )
 mesh = ExtResource( 1 )
 material/0 = null
 material/1 = null
@@ -49,7 +50,7 @@ material/2 = null
 shape = SubResource( 1 )
 
 [node name="Ground3" type="MeshInstance" parent="Node"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09213, 0.0834949, -0.539808 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43757, 0.541353, 0.256867 )
 mesh = ExtResource( 1 )
 material/0 = null
 material/1 = null
@@ -91,3 +92,6 @@ shadow_enabled = true
 [node name="player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0728769, 1.35491, -0.667757 )
 script = ExtResource( 3 )
+
+[node name="collectableHead" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.0907193, 0, -0.232959, 0, 0.25, 0, 0.232959, 0, 0.0907193, 2.40926, 1.60681, -1.01424 )

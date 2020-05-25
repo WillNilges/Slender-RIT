@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/john.obj-1efd329a80aea52e37d5a16ff095f46b.mesh"
+
+[deps]
+
+files=[ "res://.import/john.obj-1efd329a80aea52e37d5a16ff095f46b.mesh" ]
+
+source_file="res://GodotFPS-Assets/Models/john.obj"
+dest_files=[ "res://.import/john.obj-1efd329a80aea52e37d5a16ff095f46b.mesh", "res://.import/john.obj-1efd329a80aea52e37d5a16ff095f46b.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
