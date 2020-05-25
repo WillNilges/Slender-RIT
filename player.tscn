@@ -60,4 +60,7 @@ material/32 = null
 [node name="muzzle" type="Spatial" parent="Camera/shotgun"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4.00841e-06, 0.00571269, 0.039656 )
 
-[node name="SpotLight" type="SpotLight" parent="Camera/shotgun/muzzle"]
+[node name="Flashlight" type="SpotLight" parent="Camera/shotgun/muzzle"]
+
+[node name="LightTimer" type="Timer" parent="."]
+[connection signal="timeout" from="LightTimer" to="." method="_on_LightTimer_timeout"]
