@@ -18,7 +18,7 @@ visible = false
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0728769, 1.35491, -0.667757 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0728769, 1.35491, -2.19192 )
 
 [node name="Monster" parent="." instance=ExtResource( 2 )]
 
