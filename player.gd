@@ -178,11 +178,11 @@ func _on_LightTimer_timeout():
 	if regenTimer.time_left <= 0:
 		if curHP < 100:
 			# Fast regen when lit
-			if curHP+20 > 100:
-				curHP = clamp(curHP + 5, 0, maxHP)
+			if curHP+20 < 100:
+				curHP = clamp(curHP + 10, 0, maxHP)
 			# Slow regen when not lit
 			else:
-				curHP = clamp(curHP + 1, 0, maxHP)
+				curHP = clamp(curHP + 2, 0, maxHP)
 
 	if curSTM < 1000 && !Input.is_action_pressed("sprint"):
 		curSTM = clamp(curSTM + 100, 0, maxSTM)
