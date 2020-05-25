@@ -17,6 +17,8 @@ onready var player : Node = get_node("/root/MainScene/Player")
 onready var timer : Timer = get_node("Timer")
 onready var playerLOS : RayCast = get_node("/root/MainScene/Player/Camera/PlayerLOS")
 onready var fearAura : VisibilityNotifier = get_node("FearAura")
+onready var munsonBody : CollisionShape = get_node("MonsterCollisionShape");
+onready var playerBody : CollisionShape = get_node("/root/MainScene/Player/PlayerCollisionShape");
 
 # Called when the node enters the scene tree for the first time.
 func _ready ():
@@ -44,6 +46,7 @@ func _on_Timer_timeout():
 	if fearAura.is_on_screen():
 	#	onscreen = true;
 		print_debug("Oh fuck there he is!")
-		attack(1)
+		var dmgMultiplier = translation.distance_to(player.translation)
+		attack(20/dmgMultiplier)
 	#if fearAura.screen_exited() or !onscreen:
 	#	onscreen = false;
