@@ -51,24 +51,24 @@ func _ready():
 # called when an input is detected
 func _input (event):
 
-    # did the mouse move?
-    if event is InputEventMouseMotion:
-        mouseDelta = event.relative
+	# did the mouse move?
+	if event is InputEventMouseMotion:
+		mouseDelta = event.relative
 		
 # called every frame
 func _process (delta):
 
-    # rotate camera along X axis
-    camera.rotation_degrees -= Vector3(rad2deg(mouseDelta.y), 0, 0) * lookSensitivity * delta
+	# rotate camera along X axis
+	camera.rotation_degrees -= Vector3(rad2deg(mouseDelta.y), 0, 0) * lookSensitivity * delta
 
-    # clamp the vertical camera rotation
-    camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, minLookAngle, maxLookAngle)
+	# clamp the vertical camera rotation
+	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, minLookAngle, maxLookAngle)
 	
-    # rotate player along Y axis
-    rotation_degrees -= Vector3(0, rad2deg(mouseDelta.x), 0) * lookSensitivity * delta
+	# rotate player along Y axis
+	rotation_degrees -= Vector3(0, rad2deg(mouseDelta.x), 0) * lookSensitivity * delta
 	
-    # reset the mouse delta vector
-    mouseDelta = Vector2()
+	# reset the mouse delta vector
+	mouseDelta = Vector2()
 
 # called every physics step
 func _physics_process (Delta):
@@ -80,13 +80,13 @@ func _physics_process (Delta):
 	
 	# movement inputs
 	if Input.is_action_pressed("move_forward"):
-	    input.y -= 1
+		input.y -= 1
 	if Input.is_action_pressed("move_backward"):
-	    input.y += 1
+		input.y += 1
 	if Input.is_action_pressed("move_left"):
-	    input.x -= 1
+		input.x -= 1
 	if Input.is_action_pressed("move_right"):
-	    input.x += 1
+		input.x += 1
 	
 	# normalize the input so we can't move faster diagonally
 	input = input.normalized()
@@ -113,13 +113,14 @@ func _physics_process (Delta):
 	
 	# jump if we press the jump button and are standing on the floor
 	if Input.is_action_pressed("jump") and is_on_floor():
-	    vel.y = jumpForce
+		vel.y = jumpForce
 		
 	if Input.is_action_just_released("shoot"):
 		on = !on
 		flashlight.visible = !flashlight.visible
 	
 
+<<<<<<< HEAD
 		
 
 func take_damage (damage):
@@ -127,10 +128,17 @@ func take_damage (damage):
 	curHP -= damage
 	update_health_bar(curHP,maxHP)	
 	regenTimer.start(regenDelay)
+=======
+	curHp -= damage
+
+	if curHp <= 0:
+		die()
+>>>>>>> master
 
 	if curHP <= 0:
 		die()
 
+<<<<<<< HEAD
 func die ():
 	print_debug("I'm FUCKING DEAD!")
 	get_tree().quit()
@@ -138,14 +146,27 @@ func die ():
 # called when we kill an enemy
 func add_score (amount):
     score += amount
+=======
+	pass
+
+# called when we kill an enemy
+func add_score (amount):
+
+	score += amount
+>>>>>>> master
 
 # IDK why this is separate...
 #func add_health (amount):
 #	curHP = clamp(curHP + amount, 0, maxHP)
 
+<<<<<<< HEAD
+=======
+	curHp = clamp(curHp + amount, 0, maxHp)
+>>>>>>> master
 
 # And here we see an example of "Bad Code."
 
+<<<<<<< HEAD
 onready var healthBar : TextureProgress = get_node("/root/MainScene/CanvasLayer/UI/HealthBar")
 onready var powerBar : TextureProgress = get_node("/root/MainScene/CanvasLayer/UI/PowerBar")
 onready var staminaBar : TextureProgress = get_node("/root/MainScene/CanvasLayer/UI/StaminaBar")
@@ -189,3 +210,6 @@ func _on_LightTimer_timeout():
 	update_health_bar(curHP, maxHP)
 	update_power_bar(curPOW, maxPOW)
 	update_stamina_bar(curSTM, maxSTM)
+=======
+	ammo += amount
+>>>>>>> master
