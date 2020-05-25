@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://Grace Watson Quad.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Monster.tscn" type="PackedScene" id=3]
 
@@ -34,3 +35,6 @@ shape = SubResource( 1 )
 transform = Transform( 50, 0, 0, 0, 0.5, 0, 0, 0, 50, 0, 0, 0 )
 mesh = SubResource( 2 )
 material = SubResource( 3 )
+
+[node name="Grace Watson Quad" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33905, 0, -31.069 )
