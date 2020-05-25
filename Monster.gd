@@ -5,15 +5,18 @@ var health : int = 5
 var moveSpeed : float = 1.0
 
 # attacking
-var damage : int = 20
+var touchDamage : int = 20
 var attackRate : float = 0.2
 var attackDist : float = 1.2
+#var onscreen : bool = false
 
 var scoreToGive : int = 10
 
 # components
 onready var player : Node = get_node("/root/MainScene/Player")
 onready var timer : Timer = get_node("Timer")
+onready var playerLOS : RayCast = get_node("/root/MainScene/Player/Camera/PlayerLOS")
+onready var fearAura : VisibilityNotifier = get_node("FearAura")
 
 # Called when the node enters the scene tree for the first time.
 func _ready ():
@@ -28,11 +31,19 @@ func _physics_process (Delta):
 	# move the enemy towards the player
 	move_and_slide(dir * moveSpeed, Vector3.UP)
 
-func attack ():
+func attack (damage):
 	player.take_damage(damage)
 
 # Determines the frequency of Munchkin's Attack
 func _on_Timer_timeout():
 	# if we're at the right distance, attack the player
 	if translation.distance_to(player.translation) <= attackDist:
-		attack()
+		attack(touchDamage)
+		
+	# Ah yes, more bäd cøde.
+	if fearAura.is_on_screen():
+	#	onscreen = true;
+		print_debug("Oh fuck there he is!")
+		attack(1)
+	#if fearAura.screen_exited() or !onscreen:
+	#	onscreen = false;

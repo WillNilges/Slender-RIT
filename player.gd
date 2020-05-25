@@ -3,6 +3,12 @@ extends KinematicBody
 # Sanity
 var curHP : int = 100
 var maxHP : int = 100
+var regenDelay : int = 3
+
+# Stamina
+var curSTM : int = 1000
+var maxSTM : int = 1000
+var STMregenRate : int = 10
 
 # Flashlight battery
 var on : bool = true
@@ -34,6 +40,7 @@ onready var camera = get_node("Camera")
 onready var ui : Node = get_node("/root/MainScene/CanvasLayer/UI")
 onready var flashlightTimer : Timer = get_node("LightTimer")
 onready var flashlight : SpotLight = get_node("Camera/shotgun/muzzle/Flashlight")
+onready var regenTimer : Timer = get_node("RegenTimer")
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -88,9 +95,15 @@ func _physics_process (Delta):
 	var forward = global_transform.basis.z
 	var right = global_transform.basis.x
 	
-	# set the velocity
-	vel.z = (forward * input.y + right * input.x).z * moveSpeed
-	vel.x = (forward * input.y + right * input.x).x * moveSpeed
+	if Input.is_action_pressed("sprint") and curSTM > 0:
+		# set the velocity
+		vel.z = (forward * input.y + right * input.x).z * moveSpeed
+		vel.x = (forward * input.y + right * input.x).x * moveSpeed
+		curSTM -= 5
+		update_stamina_bar(curSTM, maxSTM)
+	else:
+		vel.z = (forward * input.y + right * input.x).z * moveSpeed/2
+		vel.x = (forward * input.y + right * input.x).x * moveSpeed/2
 	
 	# apply gravity
 	vel.y -= gravity * delta
@@ -105,12 +118,15 @@ func _physics_process (Delta):
 	if Input.is_action_just_released("shoot"):
 		on = !on
 		flashlight.visible = !flashlight.visible
+	
+
+		
 
 func take_damage (damage):
 	print_debug("Oof ouch owie")
 	curHP -= damage
 	update_health_bar(curHP,maxHP)	
-	
+	regenTimer.start(regenDelay)
 
 	if curHP <= 0:
 		die()
@@ -123,38 +139,53 @@ func die ():
 func add_score (amount):
     score += amount
 
-# adds an amount of health to the player
-func add_health (amount):
-	curHP = clamp(curHP + amount, 0, maxHP)
-	update_health_bar(curHP, maxHP)
+# IDK why this is separate...
+#func add_health (amount):
+#	curHP = clamp(curHP + amount, 0, maxHP)
+
 
 # And here we see an example of "Bad Code."
 
 onready var healthBar : TextureProgress = get_node("/root/MainScene/CanvasLayer/UI/HealthBar")
 onready var powerBar : TextureProgress = get_node("/root/MainScene/CanvasLayer/UI/PowerBar")
+onready var staminaBar : TextureProgress = get_node("/root/MainScene/CanvasLayer/UI/StaminaBar")
 
 func update_health_bar (curHP, maxHP):
 	healthBar.max_value = maxHP
 	healthBar.value = curHP
-	pass
 	
 func update_power_bar (curPOW, maxPOW):
 	powerBar.max_value = maxPOW
 	powerBar.value = curPOW
-	pass
 
+func update_stamina_bar (curSTM, maxSTM):
+	staminaBar.max_value = maxSTM
+	staminaBar.value = curSTM
+
+# This is basically just the "regen" timer now. For everything. Because I'm a lazy fuck.
 func _on_LightTimer_timeout():
-	#print_debug("Lights out")
-	if on:
-		curPOW -= 2
-	if !on:
-		curPOW += 1
+	# Drain when turned on
+	if on and curPOW > 0:
+		curPOW = clamp(curPOW - 2, 0, maxPOW)
+	# Recharge when turned off
+	if !on and curPOW < 100:
+		curPOW = clamp(curPOW + 1, 0, maxPOW)
+	# If out of battery, turn off.
 	if curPOW <= 0:
 		flashlight.visible = !flashlight.visible
-	# This is poor coding practice, but go fuck yourself
-	if curHP < 100:
-		if curHP+10 > 100:
-			add_health(1)
-		else:
-			add_health(2)
+
+	# Delay before regenerating HP.
+	if regenTimer.time_left <= 0:
+		if curHP < 100:
+			# Fast regen when lit
+			if curHP+20 > 100:
+				curHP = clamp(curHP + 5, 0, maxHP)
+			# Slow regen when not lit
+			else:
+				curHP = clamp(curHP + 1, 0, maxHP)
+
+	if curSTM < 1000 && !Input.is_action_pressed("sprint"):
+		curSTM = clamp(curSTM + 100, 0, maxSTM)
+	update_health_bar(curHP, maxHP)
 	update_power_bar(curPOW, maxPOW)
+	update_stamina_bar(curSTM, maxSTM)
