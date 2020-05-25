@@ -8,7 +8,7 @@
 data = PoolVector3Array( 0, 0, 0, 3, 0.3, 0, 3, 0, 0, 3, 0.3, 0, 0, 0, 0, 0, 0.3, 0, 0, 0.3, -3, 3, 0.3, 0, 0, 0.3, 0, 3, 0.3, 0, 0, 0.3, -3, 3, 0.3, -3, 3, 0, -3, 3, 0.3, 0, 3, 0.3, -3, 3, 0.3, 0, 3, 0, -3, 3, 0, 0, 3, 0, -3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, -3, 0, 0, -3, 0, 0.3, -3, 0, 0, 0, 0, 0, -3, 0, 0, 0, 0, 0.3, -3, 0, 0.3, 0, 3, 0, -3, 0, 0.3, -3, 0, 0, -3, 0, 0.3, -3, 3, 0, -3, 3, 0.3, -3 )
 
 [node name="MainScene" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.045425, 0.629712, -0.4849 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.045425, 0.629712, 0.25543 )
 
 [node name="Node" type="Node" parent="."]
 
@@ -300,7 +300,7 @@ shape = SubResource( 1 )
 
 [node name="Ground22" type="MeshInstance" parent="Node"]
 editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.77601, -0.0706723, 5.38616 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.70147, 0.0531271, 5.41059 )
 mesh = ExtResource( 1 )
 material/0 = null
 material/1 = null
@@ -352,7 +352,7 @@ shape = SubResource( 1 )
 
 [node name="Ground21" type="MeshInstance" parent="Node"]
 editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8204, -0.0597253, 5.41569 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6106, 0.0987226, 5.33708 )
 mesh = ExtResource( 1 )
 material/0 = null
 material/1 = null
@@ -395,6 +395,6 @@ visible = false
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0728769, 1.35491, -0.667757 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0728769, 1.35491, 11.5314 )
 
 [node name="Monster" parent="." instance=ExtResource( 3 )]

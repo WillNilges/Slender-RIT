@@ -14,13 +14,14 @@ height = 0.812925
 [node name="Monster" type="KinematicBody"]
 script = ExtResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="MonsterMesh" type="MeshInstance" parent="."]
 transform = Transform( 0.25, 0, 0, 0, -1.09278e-08, -2, 0, 0.25, -8.74228e-08, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="MonsterCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.25, 0, 0, 0, -1.09278e-08, -2, 0, 0.25, -8.74228e-08, 0.00100899, -0.00275397, 0.011765 )
 shape = SubResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

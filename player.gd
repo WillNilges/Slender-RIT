@@ -1,8 +1,7 @@
 extends KinematicBody
 # stats
-var curHp : int = 10
-var maxHp : int = 10
-var ammo : int = 15
+var curHp : int = 100
+var maxHp : int = 100
 var score : int = 0
 
 # physics
@@ -87,32 +86,22 @@ func _physics_process (Delta):
 	# jump if we press the jump button and are standing on the floor
 	if Input.is_action_pressed("jump") and is_on_floor():
 	    vel.y = jumpForce
-		
-#=====
-# called when an enemy damages us
+
 func take_damage (damage):
+	print_debug("Oof ouch owie")
+	curHp -= damage
 
-    curHp -= damage
+	if curHp <= 0:
+		die()
 
-    if curHp <= 0:
-        die()
-
-# called when our health reaches 0
 func die ():
-
-    pass
+	print_debug("I'm FUCKING DEAD!")
+	get_tree().quit()
 
 # called when we kill an enemy
 func add_score (amount):
-
     score += amount
 
 # adds an amount of health to the player
 func add_health (amount):
-
     curHp = clamp(curHp + amount, 0, maxHp)
-
-# adds an amount of ammo to the player
-func add_ammo (amount):
-
-    ammo += amount
