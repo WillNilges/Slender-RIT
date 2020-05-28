@@ -302,6 +302,7 @@ material/41 = null
 [node name="Tree_7" type="MeshInstance" parent="."]
 transform = Transform( 0.757648, -4.86272e-09, 0.652663, -7.45058e-09, 1, 7.45058e-09, -0.652664, -1.49012e-08, 0.757649, -2.58885, -0.0225557, 12.9753 )
 mesh = ExtResource( 5 )
+
 material/0 = null
 material/1 = null
 material/2 = null
@@ -814,10 +815,9 @@ light_data = SubResource( 1 )
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource( 6 )]
 
-[node name="SpotLight" type="SpotLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.77114, 0.636665, 0, -0.636665, 0.77114, 8.60196, 4.05027, 5.73987 )
-visible = false
-light_energy = 1.3
-light_indirect_energy = 1.5
-light_specular = 1.0
-spot_range = 10.126
+[node name="player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0728769, 1.35491, -0.667757 )
+script = ExtResource( 3 )
+
+[node name="collectableHead" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.0907193, 0, -0.232959, 0, 0.25, 0, 0.232959, 0, 0.0907193, 2.40926, 1.60681, -1.01424 )

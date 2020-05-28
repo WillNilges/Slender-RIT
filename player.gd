@@ -124,6 +124,9 @@ func _physics_process (Delta):
 		on = !on
 		flashlight.visible = !flashlight.visible
 
+func incrementScore():
+	score += 1
+
 func take_damage (damage):
 	#print_debug("Oof ouch owie")
 	curHP -= damage
