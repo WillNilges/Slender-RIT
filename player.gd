@@ -18,7 +18,7 @@ var on : bool = true
 var curPOW : int = 1000;
 var maxPOW : int = 1000;
 var drainRate : int = 5;
-var rechargeRate : int = 20;
+var rechargeRate : int = 50;
 
 # Objects collected
 var score : int = 0
