@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Block.tscn" type="PackedScene" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 1, 0.796078, 0, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.901961, 0.760784, 0, 1 )
+
+[node name="Grace Watson Quad" type="Spatial"]
+
+[node name="Block" parent="." instance=ExtResource( 1 )]
+transform = Transform( 10, 0, 0, 0, 5, 0, 0, 0, 10, 0, 0, 0 )
+
+[node name="Block2" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1.30337e-06, 0, 2.5, 0, 5, 0, -8, 0, -4.07302e-07, 7.5, 0, 18 )
+
+[node name="Block3" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1.62921e-06, 0, 2.5, 0, 5, 0, -10, 0, -4.07302e-07, -7.5, 0, 20 )
+
+[node name="Block4" parent="." instance=ExtResource( 1 )]
+transform = Transform( -9.99958, 0, -0.0228204, 0, 5, 0, 0.0912817, 0, -2.4999, 20, 0, 23.5 )
+
+[node name="Block7" parent="." instance=ExtResource( 1 )]
+transform = Transform( -9.99958, 0, -0.0228204, 0, 5, 0, 0.0912817, 0, -2.4999, -20, 0, 18 )
+
+[node name="Block5" parent="." instance=ExtResource( 1 )]
+transform = Transform( -10, 0, 8.14603e-07, 0, 5, 0, -3.25841e-06, 0, -2.5, 20, 0, 39 )
+
+[node name="Block9" parent="." instance=ExtResource( 1 )]
+transform = Transform( -10, 0, 8.14603e-07, 0, 5, 0, -3.25841e-06, 0, -2.5, -17.5, 0, 47 )
+
+[node name="Block6" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1.62921e-06, 0, -2.5, 0, 5, 0, 10, 0, -4.07302e-07, 7.5, 0, 46.5 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Block6"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="Block8" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1.62921e-06, 0, -2.5, 0, 5, 0, 10, 0, -4.07302e-07, -5, 0, 46.5 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Block8"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="GraciesRoof" type="Navigation" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8085, 7.81495 )
+
+[node name="Dorm 1" type="Navigation" parent="."]
+transform = Transform( 1, 0, 1.42109e-14, 0, 1, 0, 0, 0, 1, 5.5009, 5.26358, 38.6137 )
+
+[node name="Dorm 2" type="Navigation" parent="."]
+transform = Transform( 1, 0, 1.42109e-14, 0, 1, 0, 0, 0, 1, -6.25055, 5.26358, 38.6137 )
+
+[node name="Dorm 3" type="Navigation" parent="."]
+transform = Transform( 1, 0, 1.42109e-14, 0, 1, 0, 0, 0, 1, 27.7551, 5.26358, 38.6137 )
+
+[node name="Dorm 4" type="Navigation" parent="."]
+transform = Transform( 1, 0, 1.42109e-14, 0, 1, 0, 0, 0, 1, -6.73267, 5.26358, 51.9908 )
