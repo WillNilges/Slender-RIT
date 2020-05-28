@@ -21,9 +21,8 @@ environment = ExtResource( 2 )
 current = true
 
 [node name="PlayerLOS" type="RayCast" parent="Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0 )
 enabled = true
-cast_to = Vector3( 0, 0, -1 )
+cast_to = Vector3( 0, 0, -200 )
 collide_with_areas = true
 
 [node name="shotgun" type="MeshInstance" parent="Camera"]
@@ -70,6 +69,10 @@ transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4.0084
 
 [node name="LightTimer" type="Timer" parent="."]
 
+[node name="RecoveryTimer" type="Timer" parent="."]
+wait_time = 0.1
+
 [node name="RegenTimer" type="Timer" parent="."]
 one_shot = true
 [connection signal="timeout" from="LightTimer" to="." method="_on_LightTimer_timeout"]
+[connection signal="timeout" from="RecoveryTimer" to="." method="_on_RecoveryTimer_timeout"]

@@ -3,19 +3,22 @@ extends KinematicBody
 # Sanity
 var curHP : int = 100
 var maxHP : int = 100
-var regenDelay : int = 3
+var regenDelay : int = 2
+#var HPRegenRate : int = 2
 
 # Stamina
-var curSTM : int = 1000
-var maxSTM : int = 1000
+var curSTM : int = 1500
+var maxSTM : int = 1500
 var STMregenRate : int = 10
+
+var recoveryRate : int = 0.01
 
 # Flashlight battery
 var on : bool = true
-var curPOW : int = 100;
-var maxPOW : int = 100;
-var drainRate : int = 0.5;
-var rechargeRate : int = 1;
+var curPOW : int = 1000;
+var maxPOW : int = 1000;
+var drainRate : int = 5;
+var rechargeRate : int = 50;
 
 # Objects collected
 var score : int = 0
@@ -40,13 +43,15 @@ onready var camera = get_node("Camera")
 onready var ui : Node = get_node("/root/MainScene/CanvasLayer/UI")
 onready var flashlightTimer : Timer = get_node("LightTimer")
 onready var flashlight : SpotLight = get_node("Camera/shotgun/muzzle/Flashlight")
-onready var regenTimer : Timer = get_node("RegenTimer")
+onready var regenTimer : Timer = get_node("RegenTimer") #Delay before HP recharges.
+onready var recoveryTimer : Timer = get_node("RecoveryTimer") # Rate at which HP and stamina recharge.
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	update_health_bar(curHP, maxHP)
 	update_power_bar(curPOW, maxPOW)
 	flashlightTimer.start(drainRate)
+	recoveryTimer.start(recoveryRate)
 
 # called when an input is detected
 func _input (event):
@@ -118,12 +123,9 @@ func _physics_process (Delta):
 	if Input.is_action_just_released("shoot"):
 		on = !on
 		flashlight.visible = !flashlight.visible
-	
-
-		
 
 func take_damage (damage):
-	print_debug("Oof ouch owie")
+	#print_debug("Oof ouch owie")
 	curHP -= damage
 	update_health_bar(curHP,maxHP)	
 	regenTimer.start(regenDelay)
@@ -139,13 +141,7 @@ func die ():
 func add_score (amount):
     score += amount
 
-# IDK why this is separate...
-#func add_health (amount):
-#	curHP = clamp(curHP + amount, 0, maxHP)
-
-
 # And here we see an example of "Bad Code."
-
 onready var healthBar : TextureProgress = get_node("/root/MainScene/CanvasLayer/UI/HealthBar")
 onready var powerBar : TextureProgress = get_node("/root/MainScene/CanvasLayer/UI/PowerBar")
 onready var staminaBar : TextureProgress = get_node("/root/MainScene/CanvasLayer/UI/StaminaBar")
@@ -164,28 +160,28 @@ func update_stamina_bar (curSTM, maxSTM):
 
 # This is basically just the "regen" timer now. For everything. Because I'm a lazy fuck.
 func _on_LightTimer_timeout():
+	pass
+
+func _on_RecoveryTimer_timeout():
 	# Drain when turned on
 	if on and curPOW > 0:
 		curPOW = clamp(curPOW - 2, 0, maxPOW)
 	# Recharge when turned off
-	if !on and curPOW < 100:
+	if !on and curPOW < maxPOW:
 		curPOW = clamp(curPOW + 1, 0, maxPOW)
 	# If out of battery, turn off.
 	if curPOW <= 0:
 		flashlight.visible = !flashlight.visible
-
+		on = false
+	update_power_bar(curPOW, maxPOW)
+	
 	# Delay before regenerating HP.
 	if regenTimer.time_left <= 0:
-		if curHP < 100:
-			# Fast regen when lit
-			if curHP+20 < 100:
-				curHP = clamp(curHP + 10, 0, maxHP)
-			# Slow regen when not lit
-			else:
-				curHP = clamp(curHP + 2, 0, maxHP)
+		if curHP < maxHP:
+			curHP = clamp(curHP + 5, 0, maxHP)
 
-	if curSTM < 1000 && !Input.is_action_pressed("sprint"):
-		curSTM = clamp(curSTM + 100, 0, maxSTM)
+	if curSTM < maxSTM && !Input.is_action_pressed("sprint"):
+		curSTM = clamp(curSTM + 30, 0, maxSTM)
+	
 	update_health_bar(curHP, maxHP)
-	update_power_bar(curPOW, maxPOW)
 	update_stamina_bar(curSTM, maxSTM)
