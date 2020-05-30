@@ -10,7 +10,7 @@ extends Area
 func _ready():
 	pass # Replace with function body.
 
-
+#onready var player: Node = get_node("/root/MainScene/Player")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -18,7 +18,7 @@ func _ready():
 
 func _on_collectable_body_entered(body):
 	print(body)
-	if body.name == "player":
+	if body.name == "Player":
 		body.incrementScore()
 		queue_free()
 
