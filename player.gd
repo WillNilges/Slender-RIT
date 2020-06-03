@@ -100,7 +100,12 @@ func _physics_process (Delta):
 	var forward = global_transform.basis.z
 	var right = global_transform.basis.x
 	
-	if Input.is_action_pressed("sprint") and curSTM > 0:
+	if Input.is_action_pressed("sprint") and \
+	(Input.is_action_pressed("move_forward") or \
+	Input.is_action_pressed("move_backward") or \
+	Input.is_action_pressed("move_left")     or \
+	Input.is_action_pressed("move_right")) and \
+	curSTM > 0:
 		# set the velocity
 		vel.z = (forward * input.y + right * input.x).z * moveSpeed
 		vel.x = (forward * input.y + right * input.x).x * moveSpeed
@@ -126,6 +131,8 @@ func _physics_process (Delta):
 
 func incrementScore():
 	score += 1
+	print("Score is: ")
+	print(score)
 
 func take_damage (damage):
 	#print_debug("Oof ouch owie")

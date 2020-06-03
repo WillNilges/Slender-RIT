@@ -11,7 +11,7 @@ var attackDist : float = 1.2
 var agroRate : int = 5
 var canTeleport : bool = false; # This is literally just if the cooldown has refreshed. Nothing to do with LOS.
 var teleportLag : int = 30 # This gets smaller as the threat level rises.
-var debugAgroLevel : int = 4
+var debugAgroLevel : int = 0
 var hasBeenSeen : bool = false;
 
 # components
@@ -86,7 +86,7 @@ func teleport(distance):
 					
 			translation -=  Vector3(0,0,30)
 			canTeleport = false
-		print(player.transform.origin)
+		#print(player.transform.origin)
 		look_at(player.transform.origin, Vector3(0,1,0))
 
 func attack (damage):
@@ -117,6 +117,7 @@ func inflict_madness(manualMultiplier):
 	attack((20/dmgMultiplier)*manualMultiplier)
 	
 func _on_AgroTimer_timeout():
+	debugAgroLevel = player.score
 	canTeleport = true
 	teleport(teleportLag)
 	agroTimer.start(agroRate)

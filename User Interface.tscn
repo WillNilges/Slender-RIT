@@ -26,7 +26,7 @@ value = 100.0
 texture_under = ExtResource( 2 )
 texture_progress = ExtResource( 2 )
 tint_under = Color( 0, 0, 0, 1 )
-tint_progress = Color( 0.164706, 0.490196, 1, 1 )
+tint_progress = Color( 0.486275, 0.686275, 1, 1 )
 nine_patch_stretch = true
 
 [node name="StaminaBar" type="TextureProgress" parent="."]
@@ -38,5 +38,5 @@ value = 100.0
 texture_under = ExtResource( 2 )
 texture_progress = ExtResource( 2 )
 tint_under = Color( 0, 0, 0, 1 )
-tint_progress = Color( 0.156863, 1, 0.188235, 1 )
+tint_progress = Color( 0.494118, 1, 0.509804, 1 )
 nine_patch_stretch = true
