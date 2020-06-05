@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Block.tscn" type="PackedScene" id=1]
+
+[node name="HealthCenter" type="Spatial"]
+
+[node name="Block" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.5, 0, 0, 0, 3, 0, 0, 0, 5, -4.55657, 1.00413, 0.851522 )
+
+[node name="Block2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 10, 0, 0, 0, 3, 0, 0, 0, 15, 12.7921, 1.00413, 6.32807 )
+
+[node name="Block3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 5, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.633722, 3.46469, -0.119887 )

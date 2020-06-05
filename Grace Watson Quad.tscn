@@ -36,6 +36,7 @@ transform = Transform( -10, 0, 8.14603e-07, 0, 5, 0, -3.25841e-06, 0, -2.5, 20, 
 transform = Transform( -10, 0, 8.14603e-07, 0, 5, 0, -3.25841e-06, 0, -2.5, -17.5, 0, 47 )
 
 [node name="Block6" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
 transform = Transform( -1.62921e-06, 0, -2.5, 0, 5, 0, 10, 0, -4.07302e-07, 7.5, 0, 46.5 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="Block6"]
@@ -43,6 +44,7 @@ mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
 [node name="Block8" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
 transform = Transform( -1.62921e-06, 0, -2.5, 0, 5, 0, 10, 0, -4.07302e-07, -5, 0, 46.5 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="Block8"]
